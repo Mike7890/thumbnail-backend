@@ -36,9 +36,7 @@ app.post("/upload", uploadImage, (req, res, next) => {
       );
     return res.status(201).json({
       message: "Thumbnail generated successfully",
-      thumbnailLink: `${config.get(
-        "BACKENDURL"
-      )}/uploads/thumbnails-${req.file.originalname.replace(/\s/g, "")}`,
+      thumbnailLink: `https://thumbnail-backend.herokuapp.com/uploads/thumbnails-${req.file.originalname.replace(/\s/g, "")}`,
     });
   } catch (error) {
     res.status(500).send("Internal Server Error");
