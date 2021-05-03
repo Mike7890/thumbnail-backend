@@ -10,7 +10,7 @@ const config = require("config");
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 
 
-const port = 3000;
+const port = process.env.PORT || 5000;
 
 const corsOption = {
   origin: true,
