@@ -6,7 +6,9 @@ const sharp = require("sharp");
 const { uploadImage } = require("./middleware/multer");
 const config = require("config");
 
-app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
+// app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
+
 
 const port = 3000;
 
