@@ -5,7 +5,8 @@ const path = require("path");
 const sharp = require("sharp");
 const { uploadImage } = require("./middleware/multer");
 const config = require("config");
-app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
+app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 
 const port = 3000;
 
@@ -28,12 +29,14 @@ app.post("/upload", uploadImage, (req, res, next) => {
 
     sharp(req.file.path)
       .resize(parseInt(size), parseInt(size))
-      .toFile("uploads/" + "thumbnails-" + req.file.originalname);
+      .toFile(
+        "uploads/" + "thumbnails-" + req.file.originalname.replace(/\s/g, "")
+      );
     return res.status(201).json({
       message: "Thumbnail generated successfully",
-      thumbnailLink: `${config.get("BACKENDURL")}/uploads/thumbnails-${
-        req.file.originalname
-      }`,
+      thumbnailLink: `${config.get(
+        "BACKENDURL"
+      )}/uploads/thumbnails-${req.file.originalname.replace(/\s/g, "")}`,
     });
   } catch (error) {
     res.status(500).send("Internal Server Error");
