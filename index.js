@@ -7,7 +7,7 @@ const { uploadImage } = require("./middleware/multer");
 const config = require("config");
 
 // app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
-app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
+app.use("/uploads", express.static(path.join(__dirname,  "uploads")));
 
 
 const port = process.env.PORT || 5000;
